@@ -126,16 +126,14 @@ public class Huffman {
             Scanner myReader = new Scanner(read);
             try (FileOutputStream fos = new FileOutputStream(name)) {
                 BitOutputStream bos = new BitOutputStream(fos);
-    
+
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
                     for (int i = 0; i < data.length(); i++) {
                         char c = data.charAt(i);
-                        int value = tree.getRoot().indepthCourse(c, tree.getRoot());
-                        String binary = Integer.toBinaryString(value);
-                        String paddedBinary = String.format("%8s", binary).replace(' ', '0');
-                        for (char bit : paddedBinary.toCharArray()) {
-                            bos.write(bit - '0');
+                        String code = tree.getCode(c);
+                        for (char bit : code.toCharArray()) {
+                            bos.write(bit == '1' ? 1 : 0); 
                         }
                     }
                 }
@@ -146,8 +144,8 @@ public class Huffman {
         } catch (IOException e) {
             System.err.println("An error occurred while compressing the file: " + e.getMessage());
             e.printStackTrace();
-        }
-    }
+        }}
+    
 
 
     /**
