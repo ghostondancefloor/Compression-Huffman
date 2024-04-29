@@ -65,9 +65,13 @@ public class Huffman {
      */
     public void writeFrequencies(String path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            for (HashMap.Entry<Character, Integer> entry : this.frequencies.entrySet()) {
+            ArrayList<HashMap.Entry<Character, Integer>> entryList = new ArrayList<>(this.frequencies.entrySet());
+            
+            entryList.sort(HashMap.Entry.comparingByValue());
+            for (HashMap.Entry<Character, Integer> entry : entryList) {
                 writer.write(entry.getKey() + " " + entry.getValue() + "\n");
             }
+            
             System.out.println("Data written to file: " + path);
         } catch (IOException e) {
             System.err.println("An error occurred while writing data to file: " + e.getMessage());
@@ -158,8 +162,8 @@ public class Huffman {
     public double getCompressionRatio(String pathOriginal, String pathResult){
         File original = new File(pathOriginal);
         File result = new File(pathResult);
-        double volume1 = original.length()*8;
-        double volume2 = result.length()*8;
+        double volume1 = original.length();
+        double volume2 = result.length();
 
         double compressionRatio = 1 - (volume1/volume2);
         return compressionRatio;
