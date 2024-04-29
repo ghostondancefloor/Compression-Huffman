@@ -69,25 +69,4 @@ public class EncodingTree {
         printTree(node.getRight(), level + 1);
     }
 
-    public String getCode(char c) {
-        return getCodeHelper(root, c, "");
-    }
-
-    private String getCodeHelper(Node node, char c, String codeSoFar) {
-        if (node == null) {
-            return null;
-        }
-
-        if (node.isLeaf() && node.getCharacter() == c) {
-            return codeSoFar;
-        }
-
-        String leftCode = getCodeHelper(node.getLeft(), c, codeSoFar + "0");
-        if (leftCode != null) {
-            return leftCode;
-        }
-
-        String rightCode = getCodeHelper(node.getRight(), c, codeSoFar + "1");
-        return rightCode;
-    }
 }

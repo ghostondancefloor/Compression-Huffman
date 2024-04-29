@@ -11,6 +11,8 @@ public class Main {
             huffman.compression(tree, fileName.replace(".txt", "_comp.bin"));
             huffman.writeFrequencies(fileName.replace(".txt", "_freq.txt"));
         }
+
+        
     }
 
     

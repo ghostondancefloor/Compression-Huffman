@@ -35,3 +35,6 @@ After running the `Main` class, compressed files (`*_comp.bin`) and frequency in
 ### Note
 
 This project includes a third-party library for the `BitOutputStream` class. Refer to the license information provided in the source code comments for details regarding the usage and distribution of this library.
+
+Also, I used chatgpt to debug some snippets of my code.
+
